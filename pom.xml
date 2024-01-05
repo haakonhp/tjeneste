@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin</artifactId>
-            <version>23.2.0</version>
+            <version>23.3.14</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
