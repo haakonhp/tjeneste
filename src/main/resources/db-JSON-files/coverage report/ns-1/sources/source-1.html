@@ -1,0 +1,226 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Ad</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.classes.ads</a>
+</div>
+
+<h1>Coverage Summary for Class: Ad (no.hiof.softeng2022gruppe23.tjenestedk.classes.ads)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Ad</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    52.6%
+  </span>
+  <span class="absValue">
+    (10/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80.9%
+  </span>
+  <span class="absValue">
+    (38/47)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.classes.ads;
+&nbsp;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.db.JsonFileHandler;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.users.Client;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;public class Ad  extends JsonFileHandler {
+&nbsp;    private long clientNr;
+&nbsp;    private String regNr;
+&nbsp;    private Date startTime;
+&nbsp;    private Date endTime;
+&nbsp;    private String address;
+&nbsp;    private ArrayList&lt;Reservation&gt; reservations;
+&nbsp;    private int hourlyPrice;
+&nbsp;    private int dailyPrice;
+&nbsp;
+<b class="fc">&nbsp;    public Ad(Client client, Car car, Date startTime, Date endTime, String address, int hourlyPrice, int dailyPrice) {</b>
+<b class="fc">&nbsp;        this.clientNr = client.getPersonNumber();</b>
+<b class="fc">&nbsp;        this.regNr = car.getRegNumber();</b>
+<b class="fc">&nbsp;        this.startTime = startTime;</b>
+<b class="fc">&nbsp;        this.endTime = endTime;</b>
+<b class="fc">&nbsp;        this.address = address;</b>
+<b class="fc">&nbsp;        this.hourlyPrice = hourlyPrice;</b>
+<b class="fc">&nbsp;        this.dailyPrice = dailyPrice;</b>
+<b class="fc">&nbsp;        this.reservations = new ArrayList&lt;&gt;();</b>
+&nbsp;    }
+<b class="nc">&nbsp;    public Ad() {</b>
+&nbsp;    }
+&nbsp;    public boolean addReservation(Reservation reservation) {
+<b class="fc">&nbsp;        Date rentalStart = reservation.getRentalStart();</b>
+<b class="fc">&nbsp;        Date rentalEnd = reservation.getRentalEnd();</b>
+&nbsp;        // Conditions
+<b class="fc">&nbsp;        boolean rentalTimeStartsAfterAdStartTime = rentalStart.after(this.startTime) || rentalStart.equals(this.startTime);</b>
+<b class="fc">&nbsp;        boolean rentalTimeEndsBeforeAdEndTime = rentalEnd.before(this.endTime) || rentalEnd.equals(this.endTime);</b>
+<b class="fc">&nbsp;        boolean rentalTimeEndsAfterItStarts = rentalEnd.after(rentalStart);</b>
+<b class="fc">&nbsp;        boolean reservationAdded = false;</b>
+<b class="fc">&nbsp;        int overlaps = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (rentalTimeEndsBeforeAdEndTime &amp;&amp; rentalTimeStartsAfterAdStartTime &amp;&amp; !this.reservations.isEmpty() &amp;&amp; rentalTimeEndsAfterItStarts) {</b>
+<b class="fc">&nbsp;            for (Reservation adReservation : this.reservations) {</b>
+<b class="fc">&nbsp;                boolean doesNotOverlapReservationStart = rentalStart.after(adReservation.rentalEnd) || rentalStart.equals(adReservation.rentalEnd);</b>
+<b class="fc">&nbsp;                boolean doesNotOverlapReservationEnd = rentalEnd.before(adReservation.rentalStart) || rentalEnd.equals(adReservation.rentalStart);</b>
+<b class="fc">&nbsp;                if (!(doesNotOverlapReservationStart || doesNotOverlapReservationEnd)) {</b>
+<b class="fc">&nbsp;                    overlaps++;</b>
+&nbsp;                }
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            if (overlaps == 0) {</b>
+<b class="fc">&nbsp;                this.reservations.add(reservation);</b>
+<b class="fc">&nbsp;                reservationAdded = true;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        } else if (this.reservations.isEmpty() &amp;&amp; rentalTimeEndsAfterItStarts &amp;&amp; rentalTimeEndsBeforeAdEndTime &amp;&amp; rentalTimeStartsAfterAdStartTime) {</b>
+<b class="fc">&nbsp;            this.reservations.add(reservation);</b>
+<b class="fc">&nbsp;            reservationAdded = true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return reservationAdded;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public long getClientNr() {
+<b class="fc">&nbsp;        return clientNr;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setClient(Client client) {
+<b class="nc">&nbsp;        this.clientNr = client.getPersonNumber();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getRegNr() {
+<b class="fc">&nbsp;        return this.regNr;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setRegNr(String regNr) {
+<b class="nc">&nbsp;        this.regNr = regNr;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Date getStartTime() {
+<b class="fc">&nbsp;        return startTime;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setStartTime(Date startTime) {
+<b class="nc">&nbsp;        this.startTime = startTime;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Date getEndTime() {
+<b class="fc">&nbsp;        return endTime;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setEndTime(Date endTime) {
+<b class="nc">&nbsp;        this.endTime = endTime;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getAddress() {
+<b class="fc">&nbsp;        return address;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAddress(String address) {
+<b class="nc">&nbsp;        this.address = address;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArrayList&lt;Reservation&gt; getReservations() {
+<b class="fc">&nbsp;        return reservations;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setReservations(ArrayList&lt;Reservation&gt; reservations) {
+<b class="nc">&nbsp;        this.reservations = reservations;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getHourlyPrice() {
+<b class="fc">&nbsp;        return hourlyPrice;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setHourlyPrice(int hourlyPrice) {
+<b class="nc">&nbsp;        this.hourlyPrice = hourlyPrice;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getDailyPrice() {
+<b class="fc">&nbsp;        return dailyPrice;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDailyPrice(int dailyPrice) {
+<b class="nc">&nbsp;        this.dailyPrice = dailyPrice;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:41</div>
+</div>
+</body>
+</html>

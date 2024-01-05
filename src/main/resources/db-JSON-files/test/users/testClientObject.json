@@ -1,0 +1,12 @@
+{
+  "personNumber": 1234567890,
+  "banned": false,
+  "car": null,
+  "firstName": "Ola",
+  "lastName": "Nordmann",
+  "password": "1234",
+  "address": "vei veien 7",
+  "email": "example@example.com",
+  "phoneNumber": 12345678,
+  "profilePicture": "this is a profile picture"
+}

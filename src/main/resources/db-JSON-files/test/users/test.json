@@ -1,0 +1,38 @@
+{
+  "personNumber": 1234567890,
+  "banned": false,
+  "cars": [
+    {
+      "brand": null,
+      "model": "Toyota Camry",
+      "year": 0,
+      "color": null,
+      "nrOfSeats": 0,
+      "regNumber": null,
+      "ads": [
+        {
+          "ledig tid": "2020-01-01",
+          "pris": 0,
+          "reservert": [
+            "reservert tid": "2020-01-01"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": null,
+      "model": "Ford Mustang",
+      "year": 0,
+      "color": null,
+      "nrOfSeats": 0,
+      "regNumber": null
+    }
+  ],
+  "firstName": "Ola",
+  "lastName": "Nordmann",
+  "password": "1234",
+  "address": "vei veien 7",
+  "email": "example@example.com",
+  "phoneNumber": 12345678,
+  "profilePicture": "this is a profile picture"
+}

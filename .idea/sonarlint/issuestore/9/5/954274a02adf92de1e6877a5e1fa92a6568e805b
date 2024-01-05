@@ -1,0 +1,15 @@
+
+^
+java:S2095"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(ÙÉª
+g
+java:S2095:"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(İá ›øÿÿÿÿ
+g
+java:S20959"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(—¯„øÿÿÿÿ
+Z
+java:S1610"?Convert the abstract class "JsonFileHandler" into an interface.(½¡ıÌÿÿÿÿÿ
+M
+java:S1135"2Complete the task associated to this TODO comment.(È§ÇÓùÿÿÿÿ
+R	java:S8993"=Do something with the "boolean" value returned by "renameTo".(ŞˆÑ¯
+U	java:S899I";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
+i
+java:S4042I"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ

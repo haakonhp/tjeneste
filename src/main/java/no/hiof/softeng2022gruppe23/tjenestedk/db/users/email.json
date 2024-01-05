@@ -1,0 +1,12 @@
+{
+  "personNumber": 0,
+  "banned": true,
+  "car": null,
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "password": "password",
+  "address": "address",
+  "email": "email",
+  "phoneNumber": 0,
+  "profilePicture": "profilePicture"
+}

@@ -1,0 +1,171 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Client</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.classes.users</a>
+</div>
+
+<h1>Coverage Summary for Class: Client (no.hiof.softeng2022gruppe23.tjenestedk.classes.users)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Client</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    54.5%
+  </span>
+  <span class="absValue">
+    (6/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    26.7%
+  </span>
+  <span class="absValue">
+    (8/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.classes.users;
+&nbsp;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.Ad;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.Car;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.Reservation;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;public class Client extends User {
+&nbsp;
+&nbsp;    long personNumber;
+&nbsp;    boolean banned;
+&nbsp;    private Car car;
+<b class="fc">&nbsp;    public Client() {}</b>
+&nbsp;
+&nbsp;    public Client(String firstName, String lastName, String password, String address, String email, int phoneNumber, String profilePicture, long personNumber, boolean banned) {
+<b class="fc">&nbsp;        super(firstName, lastName, password, address, email, phoneNumber, profilePicture);</b>
+<b class="fc">&nbsp;        this.personNumber = personNumber;</b>
+<b class="fc">&nbsp;        this.banned = banned;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public long getPersonNumber() {
+<b class="fc">&nbsp;        return personNumber;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addCar(String brand, String model, int year, String color, int nrOfSeats, String regNumber) {
+<b class="fc">&nbsp;        this.car = new Car(brand, model, year, color, nrOfSeats, regNumber);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void saveAllToJson() {
+<b class="nc">&nbsp;        String userFilePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/users/&quot;;</b>
+<b class="nc">&nbsp;        String carFilePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/cars/&quot;;</b>
+<b class="nc">&nbsp;        String adFilePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/ads/&quot;;</b>
+<b class="nc">&nbsp;        String reservationFilePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/reservations/&quot;;</b>
+<b class="nc">&nbsp;        Car car = this.getCar();</b>
+<b class="nc">&nbsp;        ArrayList&lt;Ad&gt; ads = car.getAds();</b>
+<b class="nc">&nbsp;        ArrayList&lt;Reservation&gt; reservations = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        for (Ad ad : ads) {</b>
+<b class="nc">&nbsp;            reservations.addAll(ad.getReservations());</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        for (Reservation r : reservations) {</b>
+<b class="nc">&nbsp;            r.writeToJson(reservationFilePath, r.getRegNumber() + r.getRentalStart().getTime());</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        for (Ad ad : ads) {</b>
+<b class="nc">&nbsp;            ad.writeToJson(adFilePath, ad.getRegNr() + ad.getStartTime().getTime());</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        car.writeToJson(carFilePath, car.getRegNumber());</b>
+<b class="nc">&nbsp;        this.writeToJson(userFilePath, this.getEmail());</b>
+&nbsp;    }
+&nbsp;    public void setCar(Car car) {
+<b class="nc">&nbsp;        this.car = car;</b>
+&nbsp;    }
+&nbsp;    public Car getCar() {
+<b class="fc">&nbsp;        return this.car;</b>
+&nbsp;    }
+&nbsp;    public void setPersonNumber(long personNumber) {
+<b class="nc">&nbsp;        this.personNumber = personNumber;</b>
+&nbsp;    }
+&nbsp;    public boolean getIsBanned() {
+<b class="fc">&nbsp;        return banned;</b>
+&nbsp;    }
+&nbsp;    public void setBanned(boolean banned) {
+<b class="nc">&nbsp;        this.banned = banned;</b>
+&nbsp;    }
+&nbsp;    public boolean isBanned() {
+<b class="nc">&nbsp;        return banned;</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:41</div>
+</div>
+</body>
+</html>

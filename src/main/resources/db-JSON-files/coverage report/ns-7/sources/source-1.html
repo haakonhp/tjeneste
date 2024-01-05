@@ -1,0 +1,326 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BrowseCar</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.views.browsecar</a>
+</div>
+
+<h1>Coverage Summary for Class: BrowseCar (no.hiof.softeng2022gruppe23.tjenestedk.views.browsecar)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BrowseCar</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/94)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.views.browsecar;
+&nbsp;
+&nbsp;import com.vaadin.flow.component.Tag;
+&nbsp;import com.vaadin.flow.component.button.Button;
+&nbsp;import com.vaadin.flow.component.datetimepicker.DateTimePicker;
+&nbsp;import com.vaadin.flow.component.dependency.JsModule;
+&nbsp;import com.vaadin.flow.component.dialog.Dialog;
+&nbsp;import com.vaadin.flow.component.html.Div;
+&nbsp;import com.vaadin.flow.component.littemplate.LitTemplate;
+&nbsp;import com.vaadin.flow.component.notification.Notification;
+&nbsp;import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+&nbsp;import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+&nbsp;import com.vaadin.flow.component.template.Id;
+&nbsp;import com.vaadin.flow.component.textfield.TextArea;
+&nbsp;import com.vaadin.flow.component.textfield.TextField;
+&nbsp;import com.vaadin.flow.router.BeforeEvent;
+&nbsp;import com.vaadin.flow.router.HasUrlParameter;
+&nbsp;import com.vaadin.flow.router.OptionalParameter;
+&nbsp;import com.vaadin.flow.router.Route;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.*;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.users.Client;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.views.profile.ProfilePage;
+&nbsp;
+&nbsp;import java.text.SimpleDateFormat;
+&nbsp;import java.time.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Date;
+&nbsp;
+&nbsp;/**
+&nbsp; * A Designer generated component for the browse-car template.
+&nbsp; *
+&nbsp; * Designer will add and remove fields with @Id mappings but
+&nbsp; * does not overwrite or otherwise change this file.
+&nbsp; */
+<b class="nc">&nbsp;@Tag(&quot;browse-car&quot;)</b>
+&nbsp;@JsModule(&quot;./browse-car.ts&quot;)
+&nbsp;@Route(&quot;browse-car&quot;)
+&nbsp;public class BrowseCar extends LitTemplate implements HasUrlParameter&lt;String&gt;, AdFinder {
+&nbsp;
+&nbsp;    @Id(&quot;view_cars_button&quot;)
+&nbsp;    private Button view_cars_button;
+&nbsp;    @Id(&quot;profile_button&quot;)
+&nbsp;    private Button profile_button;
+&nbsp;    @Id(&quot;home_button&quot;)
+&nbsp;    private Button home_button;
+&nbsp;    @Id(&quot;searchButton&quot;)
+&nbsp;    private Button searchButton;
+&nbsp;    @Id(&quot;toDateTime&quot;)
+&nbsp;    private DateTimePicker toDateTime;
+&nbsp;    @Id(&quot;fromDateTime&quot;)
+&nbsp;    private DateTimePicker fromDateTime;
+&nbsp;    @Id(&quot;verticalLayout&quot;)
+&nbsp;    private VerticalLayout verticalLayout;
+&nbsp;
+&nbsp;    private Client activeClient;
+&nbsp;
+<b class="nc">&nbsp;    ZoneOffset offset = ZoneId.of(&quot;+02:00&quot;).getRules().getOffset(LocalDateTime.now());</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setParameter(BeforeEvent event,
+&nbsp;                             @OptionalParameter String parameter) {
+&nbsp;
+&nbsp;        // If user email is sent as a parameter, the user is set as activeUser (logged-in user)
+<b class="nc">&nbsp;        if (parameter != null) {</b>
+<b class="nc">&nbsp;            String filepath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/users/&quot; + parameter + &quot;.json&quot;;</b>
+<b class="nc">&nbsp;            Client client = new Client();</b>
+<b class="nc">&nbsp;            client = client.jsonToObject(filepath, Client.class);</b>
+<b class="nc">&nbsp;            setActiveClient(client);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a new BrowseCar.
+&nbsp;     */
+<b class="nc">&nbsp;    public BrowseCar() {</b>
+&nbsp;        // You can initialise any data required for the connected UI components here.
+&nbsp;
+&nbsp;        // Navigation buttons
+<b class="nc">&nbsp;        home_button.addClickListener(e -&gt;</b>
+<b class="nc">&nbsp;                home_button.getUI().ifPresent(ui -&gt;</b>
+<b class="nc">&nbsp;                        ui.navigate(&quot;&quot;)));</b>
+&nbsp;
+<b class="nc">&nbsp;        view_cars_button.addClickListener(e -&gt;</b>
+<b class="nc">&nbsp;                view_cars_button.getUI().ifPresent(ui -&gt;</b>
+<b class="nc">&nbsp;                        ui.navigate(&quot;browse-car&quot;)));</b>
+&nbsp;
+<b class="nc">&nbsp;        profile_button.addClickListener(e -&gt;</b>
+&nbsp;                {
+<b class="nc">&nbsp;                   if (activeClient != null) {</b>
+<b class="nc">&nbsp;                       profile_button.getUI().ifPresent(ui-&gt;</b>
+<b class="nc">&nbsp;                               ui.navigate(ProfilePage.class, activeClient.getEmail()));</b>
+&nbsp;                   }
+&nbsp;                });
+&nbsp;
+&nbsp;        //
+<b class="nc">&nbsp;        searchButton.addClickListener(e -&gt;</b>
+&nbsp;            {
+<b class="nc">&nbsp;                viewAvailableCars();</b>
+&nbsp;            });
+&nbsp;    }
+&nbsp;
+&nbsp;    public void viewAvailableCars() {
+<b class="nc">&nbsp;        verticalLayout.removeAll();</b>
+<b class="nc">&nbsp;        LocalDateTime fromTime = fromDateTime.getValue();</b>
+<b class="nc">&nbsp;        LocalDateTime toTime = toDateTime.getValue();</b>
+&nbsp;
+<b class="nc">&nbsp;        ArrayList&lt;Ad&gt; ads = AdFinder.getAdsInTimeslot(fromTime, toTime);</b>
+<b class="nc">&nbsp;        for (Ad ad : ads) {</b>
+<b class="nc">&nbsp;            Car car = new Car();</b>
+<b class="nc">&nbsp;            car = car.jsonToObject(&quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/cars/&quot; + ad.getRegNr() + &quot;.json&quot;, Car.class);</b>
+&nbsp;
+<b class="nc">&nbsp;            Div div = new Div();</b>
+<b class="nc">&nbsp;            TextArea description = new TextArea();</b>
+<b class="nc">&nbsp;            Button viewCarButton = new Button(&quot;View car&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            SimpleDateFormat dateFormatter = new SimpleDateFormat(&quot;dd/MM/yy hh:mm&quot;);</b>
+<b class="nc">&nbsp;            String from = dateFormatter.format(ad.getStartTime());</b>
+<b class="nc">&nbsp;            String to = dateFormatter.format(ad.getEndTime());</b>
+&nbsp;
+<b class="nc">&nbsp;            description.setValue(car.toString() + &quot;\nAvailable from: &quot; + from + &quot;. To: &quot; + to);</b>
+<b class="nc">&nbsp;            description.setMinWidth(&quot;80%&quot;);</b>
+<b class="nc">&nbsp;            description.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;            viewCarButton.addClickListener(f -&gt;</b>
+&nbsp;                    {
+<b class="nc">&nbsp;                        viewCar(fromTime, toTime, ad);</b>
+&nbsp;                    }
+&nbsp;                    );
+&nbsp;
+&nbsp;            // Add elements and style to ad div
+<b class="nc">&nbsp;            div.add(description, viewCarButton);</b>
+<b class="nc">&nbsp;            div.getStyle().set(&quot;align-self&quot;, &quot;center&quot;);</b>
+<b class="nc">&nbsp;            div.setWidth(&quot;50%&quot;);</b>
+<b class="nc">&nbsp;            verticalLayout.add(div);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void viewCar(LocalDateTime fromTime, LocalDateTime toTime, Ad ad) {
+<b class="nc">&nbsp;        Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;        dialog.setHeaderTitle(&quot;New reservation&quot;);</b>
+<b class="nc">&nbsp;        dialog.setMinWidth(&quot;40%&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        RentDialog rentDialog = createRentDialog(ad, fromTime, toTime);</b>
+<b class="nc">&nbsp;        HorizontalLayout dialogLayout = rentDialog.getLayout();</b>
+<b class="nc">&nbsp;        Button rentButton = rentDialog.getRentButton();</b>
+&nbsp;
+<b class="nc">&nbsp;        rentButton.addClickListener(b -&gt;</b>
+&nbsp;                {
+<b class="nc">&nbsp;                    rentACar(fromTime, toTime, ad);</b>
+&nbsp;                });
+&nbsp;
+<b class="nc">&nbsp;        dialog.add(dialogLayout);</b>
+<b class="nc">&nbsp;        verticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;        dialog.open();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void rentACar(LocalDateTime fromTime, LocalDateTime toTime, Ad ad) {
+<b class="nc">&nbsp;        if (activeClient != null) {</b>
+<b class="nc">&nbsp;            rentCar(fromTime, toTime, ad);</b>
+<b class="nc">&nbsp;            Notification n = Notification</b>
+<b class="nc">&nbsp;                    .show(&quot;Reservation added&quot;);</b>
+<b class="nc">&nbsp;            n.setPosition(Notification.Position.MIDDLE);</b>
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            Notification n = Notification</b>
+<b class="nc">&nbsp;                    .show(&quot;You must be logged in to reserve a car.&quot;);</b>
+<b class="nc">&nbsp;            n.setPosition(Notification.Position.MIDDLE);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void rentCar(LocalDateTime rentalFromTime, LocalDateTime rentalToTime, Ad ad) {
+&nbsp;
+&nbsp;        // Set timezone offset to local offset and get date and time as Date object
+<b class="nc">&nbsp;        Date startDateTime = Date.from(rentalFromTime.toInstant(offset));</b>
+<b class="nc">&nbsp;        Date endDateTime = Date.from(rentalToTime.toInstant(offset));</b>
+&nbsp;
+&nbsp;        // Create new reservation and save as json file, and update ad file with new reservation
+<b class="nc">&nbsp;        Reservation reservation = new Reservation(ad.getRegNr(), activeClient, startDateTime, endDateTime, ad);</b>
+<b class="nc">&nbsp;        if (ad.addReservation(reservation)) {</b>
+<b class="nc">&nbsp;            ad.writeToJson(&quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/ads/&quot;, ad.getRegNr() + ad.getStartTime().getTime());</b>
+<b class="nc">&nbsp;            reservation.writeToJson(&quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/reservations/&quot;, reservation.getRegNumber() + reservation.getRentalStart().getTime());</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            Notification n = Notification</b>
+<b class="nc">&nbsp;                    .show(&quot;Can&#39;t reserve car at this time. Car might be taken.&quot;);</b>
+<b class="nc">&nbsp;            n.setPosition(Notification.Position.MIDDLE);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private static RentDialog createRentDialog(Ad ad, LocalDateTime rentalFromTime, LocalDateTime rentalToTime) {
+<b class="nc">&nbsp;        StringBuilder reservationString = new StringBuilder();</b>
+<b class="nc">&nbsp;        ArrayList&lt;Reservation&gt; reservationArray = ad.getReservations();</b>
+<b class="nc">&nbsp;        SimpleDateFormat dateFormatter = new SimpleDateFormat(&quot;dd/MM/yy hh:mm&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Reservation reservation : reservationArray) {</b>
+<b class="nc">&nbsp;            String reservationStart = dateFormatter.format(reservation.getRentalStart());</b>
+<b class="nc">&nbsp;            String reservationEnd = dateFormatter.format(reservation.getRentalEnd());</b>
+&nbsp;
+<b class="nc">&nbsp;            reservationString.append(&quot;Reservation start: &quot;).append(reservationStart).append(&quot;\nReservation end: &quot;).append(reservationEnd).append(&quot;\n\n&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        // Add reservations to dialog window
+<b class="nc">&nbsp;        TextArea reservations = new TextArea(&quot;Reservations&quot;);</b>
+<b class="nc">&nbsp;        reservations.setValue(reservationString.toString());</b>
+<b class="nc">&nbsp;        reservations.setReadOnly(true);</b>
+<b class="nc">&nbsp;        reservations.setMinWidth(&quot;65%&quot;);</b>
+&nbsp;
+&nbsp;        // Create temp reservation to calculate price of reservation
+<b class="nc">&nbsp;        Reservation tempReservation = new Reservation(rentalFromTime, rentalToTime, ad);</b>
+<b class="nc">&nbsp;        TextField price = new TextField(&quot;Price&quot;);</b>
+<b class="nc">&nbsp;        price.setValue(Long.toString(tempReservation.getTotalPrice()));</b>
+<b class="nc">&nbsp;        price.setMaxWidth(&quot;40%&quot;);</b>
+<b class="nc">&nbsp;        price.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;        Button rentButton = new Button(&quot;Rent car&quot;);</b>
+<b class="nc">&nbsp;        VerticalLayout priceDiv = new VerticalLayout(price, rentButton);</b>
+&nbsp;
+<b class="nc">&nbsp;        HorizontalLayout layout = new HorizontalLayout(reservations, priceDiv);</b>
+<b class="nc">&nbsp;        return new RentDialog(layout, rentButton);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setActiveClient(Client activeClient) {
+<b class="nc">&nbsp;        this.activeClient = activeClient;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:09</div>
+</div>
+</body>
+</html>

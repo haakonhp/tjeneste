@@ -1,0 +1,39 @@
+{
+  "regNumber": "BR20394",
+  "rentalClient": {
+    "personNumber": 12345678901,
+    "banned": false,
+    "car": {
+      "brand": "Toyota",
+      "model": "Land cruiser",
+      "year": 1998,
+      "color": "Red",
+      "nrOfSeats": 5,
+      "regNumber": "BR20394",
+      "ads": [
+        {
+          "clientNr": 12345678901,
+          "regNr": "BR20394",
+          "startTime": "Oct 23, 2022, 1:00:00 AM",
+          "endTime": "Dec 2, 2022, 12:00:00 AM",
+          "address": "Veien 2",
+          "reservations": [],
+          "hourlyPrice": 100,
+          "dailyPrice": 500
+        }
+      ]
+    },
+    "firstName": "Default",
+    "lastName": "User",
+    "password": "password",
+    "address": "Address",
+    "email": "default@user.com",
+    "phoneNumber": 12345678,
+    "profilePicture": ""
+  },
+  "rentalStart": "Oct 30, 2022, 6:00:00 AM",
+  "rentalEnd": "Oct 30, 2022, 7:00:00 AM",
+  "totalPrice": 100,
+  "rentalHourlyPrice": 100,
+  "rentalDailyPrice": 500
+}

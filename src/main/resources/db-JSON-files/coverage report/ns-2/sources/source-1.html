@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JsonFileHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.classes.db</a>
+</div>
+
+<h1>Coverage Summary for Class: JsonFileHandler (no.hiof.softeng2022gruppe23.tjenestedk.classes.db)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JsonFileHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (6/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    36.7%
+  </span>
+  <span class="absValue">
+    (11/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.classes.db;
+&nbsp;import com.google.gson.Gson;
+&nbsp;import com.google.gson.GsonBuilder;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;import java.lang.reflect.Type;
+&nbsp;import java.io.*;
+<b class="fc">&nbsp;public abstract class JsonFileHandler {</b>
+&nbsp;
+&nbsp;    // Converts objects to string in JSON format
+&nbsp;    public String objectToJsonString() {
+<b class="fc">&nbsp;        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();</b>
+<b class="fc">&nbsp;        return gson.toJson(this);</b>
+&nbsp;    }
+&nbsp;    // Writes objects to JSON file, if the file does not exist will it be created
+&nbsp;    // TODO     W A R N I N G !!! This method will overwrite existing file
+&nbsp;    public void writeToJson(String path, String fileName) {
+&nbsp;        try {
+<b class="fc">&nbsp;            FileWriter writer = new FileWriter(path + fileName + &quot;.json&quot;);</b>
+<b class="fc">&nbsp;            writer.write(this.objectToJsonString());</b>
+<b class="fc">&nbsp;            writer.close();</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;    // Reads JSON file and returns a BufferedReader object with the file content, used in the methods that have to be implemented for each class.
+&nbsp;    public BufferedReader readFromJson(String path) {
+&nbsp;        try {
+<b class="fc">&nbsp;            return new BufferedReader(new FileReader(path));</b>
+<b class="nc">&nbsp;        } catch (FileNotFoundException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    // Converts JSON file to objects
+&nbsp;    public &lt;T&gt; T jsonToObject(String path, Class&lt;T&gt; classOfT) {
+<b class="fc">&nbsp;        return new GsonBuilder().create().fromJson(readFromJson(path), (Type) classOfT);</b>
+&nbsp;    }
+&nbsp;    // Renames a JSON file
+&nbsp;    public void renameJsonFile(String path, String newPath) {
+<b class="nc">&nbsp;        File file = new File(path);</b>
+<b class="nc">&nbsp;        File newFile = new File(newPath);</b>
+<b class="nc">&nbsp;        file.renameTo(newFile);</b>
+&nbsp;    }
+&nbsp;    // Copies a JSON file
+&nbsp;    public void copyJsonFile(String path, String newPath) {
+&nbsp;        try {
+<b class="nc">&nbsp;            BufferedReader reader = new BufferedReader(new FileReader(path));</b>
+<b class="nc">&nbsp;            BufferedWriter writer = new BufferedWriter(new FileWriter(newPath));</b>
+&nbsp;            String line;
+<b class="nc">&nbsp;            while ((line = reader.readLine()) != null) {</b>
+<b class="nc">&nbsp;                writer.write(line);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            reader.close();</b>
+<b class="nc">&nbsp;            writer.close();</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;    // Deletes a JSON file
+&nbsp;    public static void deleteJsonFile(String path) {
+<b class="fc">&nbsp;        File file = new File(path);</b>
+<b class="fc">&nbsp;        file.delete();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Moves a JSON file
+&nbsp;    public void moveJsonFile(String path, String newPath) {
+<b class="nc">&nbsp;        copyJsonFile(path, newPath);</b>
+<b class="nc">&nbsp;        deleteJsonFile(path);</b>
+&nbsp;    }
+&nbsp;    /*
+&nbsp;    Sources:
+&nbsp;    These methods were crated by analyzing the GSON documentation and the following sources:
+&nbsp;        https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/Gson.html
+&nbsp;        https://github.com/google/gson/blob/master/UserGuide.md#TOC-Finer-Points-with-Objects
+&nbsp;        https://jenkov.com/tutorials/java-json/gson.html
+&nbsp;     */
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:41</div>
+</div>
+</body>
+</html>

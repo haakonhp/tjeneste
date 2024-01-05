@@ -1,0 +1,20 @@
+{
+  "regNumber": "CV93847",
+  "rentalClient": {
+    "personNumber": 9287563,
+    "banned": false,
+    "cars": [],
+    "firstName": "Lars",
+    "lastName": "Monsen",
+    "password": "123",
+    "address": "Skogen",
+    "email": "lm@lm.no",
+    "phoneNumber": 23423423,
+    "profilePicture": ""
+  },
+  "rentalStart": "Oct 29, 2022, 12:00:00 AM",
+  "rentalEnd": "Oct 29, 2022, 11:00:00 PM",
+  "totalPrice": 500,
+  "rentalHourlyPrice": 100,
+  "rentalDailyPrice": 500
+}

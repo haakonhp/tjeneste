@@ -1,0 +1,51 @@
+{
+  "personNumber": 12345678901,
+  "banned": false,
+  "car": {
+    "brand": "gergerg",
+    "model": "gegeger",
+    "year": 1993,
+    "color": "red",
+    "nrOfSeats": 2,
+    "regNumber": "PC96668",
+    "ads": [
+      {
+        "clientNr": 12345678901,
+        "regNr": "PC96668",
+        "startTime": "Dec 21, 2022, 3:00:00 AM",
+        "endTime": "Feb 23, 2023, 4:00:00 PM",
+        "address": "hehe 55",
+        "reservations": [],
+        "hourlyPrice": 2,
+        "dailyPrice": 2
+      },
+      {
+        "clientNr": 12345678901,
+        "regNr": "PC96668",
+        "startTime": "Dec 21, 2022, 3:00:00 AM",
+        "endTime": "Feb 23, 2023, 4:00:00 PM",
+        "address": "hehe 55",
+        "reservations": [],
+        "hourlyPrice": 2,
+        "dailyPrice": 2
+      },
+      {
+        "clientNr": 12345678901,
+        "regNr": "PC96668",
+        "startTime": "Dec 21, 2022, 3:00:00 AM",
+        "endTime": "Feb 23, 2023, 4:00:00 PM",
+        "address": "hehe 55",
+        "reservations": [],
+        "hourlyPrice": 2,
+        "dailyPrice": 2
+      }
+    ]
+  },
+  "firstName": "Default",
+  "lastName": "User",
+  "password": "password",
+  "address": "Address",
+  "email": "default@user.com",
+  "phoneNumber": 12345678,
+  "profilePicture": ""
+}

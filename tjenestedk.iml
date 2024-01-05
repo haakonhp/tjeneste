@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="designer2.settings">
+    <option name="lastJavaLocation" value="$MODULE_DIR$/src/main/java" />
+    <option name="lastJavaPackage" value="no.hiof.softeng2022gruppe23.tjenestedk.views" />
+    <option name="lastTemplateLocation" value="$MODULE_DIR$/frontend" />
+    <option name="serverIp" value="192.168.50.130" />
+    <option name="serverPort" value="42355" />
+  </component>
+</module>

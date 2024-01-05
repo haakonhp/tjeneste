@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AdFinder</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.classes.ads</a>
+</div>
+
+<h1>Coverage Summary for Class: AdFinder (no.hiof.softeng2022gruppe23.tjenestedk.classes.ads)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AdFinder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.classes.ads;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.Ad;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.time.ZoneId;
+&nbsp;import java.time.ZoneOffset;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Date;
+&nbsp;public interface AdFinder {
+&nbsp;    static ArrayList&lt;Ad&gt; getAdsInTimeslot(LocalDateTime from, LocalDateTime to) {
+<b class="nc">&nbsp;        ZoneOffset offset = ZoneId.of(&quot;+01:00&quot;).getRules().getOffset(LocalDateTime.now());</b>
+&nbsp;
+<b class="nc">&nbsp;        File filepath = new File(&quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/ads/&quot;);</b>
+<b class="nc">&nbsp;        File[] allAds = filepath.listFiles();</b>
+<b class="nc">&nbsp;        ArrayList&lt;Ad&gt; ads = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        Date fromTime = Date.from(from.toInstant(offset));</b>
+<b class="nc">&nbsp;        Date toTime = Date.from(to.toInstant(offset));</b>
+&nbsp;
+<b class="nc">&nbsp;        if (allAds != null) {</b>
+<b class="nc">&nbsp;            for (File ad : allAds) {</b>
+<b class="nc">&nbsp;                Ad i = new Ad();</b>
+<b class="nc">&nbsp;                i = i.jsonToObject(ad.getPath(), Ad.class);</b>
+<b class="nc">&nbsp;                if (i.getStartTime().toInstant().isBefore(fromTime.toInstant()) &amp;&amp; i.getEndTime().toInstant().isAfter(toTime.toInstant())) {</b>
+<b class="nc">&nbsp;                    ads.add(i);</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return ads;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:41</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,550 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProfilePage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.views.profile</a>
+</div>
+
+<h1>Coverage Summary for Class: ProfilePage (no.hiof.softeng2022gruppe23.tjenestedk.views.profile)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProfilePage</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/221)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.views.profile;
+&nbsp;
+&nbsp;import com.vaadin.flow.component.Tag;
+&nbsp;import com.vaadin.flow.component.button.Button;
+&nbsp;import com.vaadin.flow.component.datetimepicker.DateTimePicker;
+&nbsp;import com.vaadin.flow.component.dependency.JsModule;
+&nbsp;import com.vaadin.flow.component.dialog.Dialog;
+&nbsp;import com.vaadin.flow.component.littemplate.LitTemplate;
+&nbsp;import com.vaadin.flow.component.notification.Notification;
+&nbsp;import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+&nbsp;import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+&nbsp;import com.vaadin.flow.component.template.Id;
+&nbsp;import com.vaadin.flow.component.textfield.TextArea;
+&nbsp;import com.vaadin.flow.component.textfield.TextField;
+&nbsp;import com.vaadin.flow.router.BeforeEvent;
+&nbsp;import com.vaadin.flow.router.HasUrlParameter;
+&nbsp;import com.vaadin.flow.router.OptionalParameter;
+&nbsp;import com.vaadin.flow.router.Route;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.Ad;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.ads.Car;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.classes.users.Client;
+&nbsp;import no.hiof.softeng2022gruppe23.tjenestedk.views.browsecar.BrowseCar;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.time.Instant;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.time.ZoneId;
+&nbsp;import java.util.Date;
+&nbsp;
+&nbsp;/**
+&nbsp; * A Designer generated component for the profile-page template.
+&nbsp; *
+&nbsp; * Designer will add and remove fields with @Id mappings but
+&nbsp; * does not overwrite or otherwise change this file.
+&nbsp; */
+<b class="nc">&nbsp;@Tag(&quot;profile-page&quot;)</b>
+&nbsp;@JsModule(&quot;./profile-page.ts&quot;)
+&nbsp;@Route(&quot;profile-page&quot;)
+&nbsp;public class ProfilePage extends LitTemplate implements HasUrlParameter&lt;String&gt; {
+&nbsp;
+&nbsp;    private Client activeClient;
+&nbsp;
+&nbsp;    @Id(&quot;vaadinVerticalLayout&quot;)
+&nbsp;    private VerticalLayout vaadinVerticalLayout;
+&nbsp;    @Id(&quot;contact_button&quot;)
+&nbsp;    private Button contact_button;
+&nbsp;    @Id(&quot;view_cars_button&quot;)
+&nbsp;    private Button view_cars_button;
+&nbsp;    @Id(&quot;home_button&quot;)
+&nbsp;    private Button home_button;
+&nbsp;    @Id(&quot;addCarButton&quot;)
+&nbsp;    private Button addCarButton;
+&nbsp;    @Id(&quot;editAdsButton&quot;)
+&nbsp;    private Button editAdsButton;
+&nbsp;    @Id(&quot;editProfileButton&quot;)
+&nbsp;    private Button editProfileButton;
+&nbsp;    @Id(&quot;editCarButton&quot;)
+&nbsp;    private Button editCarButton;
+&nbsp;    @Id(&quot;deleteCarButton&quot;)
+&nbsp;    private Button deleteCarButton;
+&nbsp;    @Id(&quot;newAdButton&quot;)
+&nbsp;    private Button newAdButton;
+&nbsp;    @Id(&quot;deleteAdButton&quot;)
+&nbsp;    private Button deleteAdButton;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setParameter(BeforeEvent event,
+&nbsp;                             @OptionalParameter String parameter) {
+&nbsp;
+&nbsp;        // If user email is sent as a parameter, the user is set as activeUser (logged-in user)
+<b class="nc">&nbsp;        if (parameter != null) {</b>
+<b class="nc">&nbsp;            String filepath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/users/&quot; + parameter + &quot;.json&quot;;</b>
+<b class="nc">&nbsp;            Client client = new Client();</b>
+<b class="nc">&nbsp;            client = client.jsonToObject(filepath, Client.class);</b>
+<b class="nc">&nbsp;            setActiveClient(client);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a new ProfilePage.
+&nbsp;     */
+<b class="nc">&nbsp;    public ProfilePage() {</b>
+&nbsp;        // You can initialise any data required for the connected UI components here.
+&nbsp;
+<b class="nc">&nbsp;        home_button.addClickListener(e -&gt;</b>
+<b class="nc">&nbsp;                home_button.getUI().ifPresent(ui -&gt;</b>
+<b class="nc">&nbsp;                        ui.navigate(&quot;&quot;)));</b>
+&nbsp;
+<b class="nc">&nbsp;        view_cars_button.addClickListener(e -&gt;</b>
+<b class="nc">&nbsp;                view_cars_button.getUI().ifPresent(ui -&gt;</b>
+<b class="nc">&nbsp;                        ui.navigate(BrowseCar.class, activeClient.getEmail())));</b>
+&nbsp;
+<b class="nc">&nbsp;        editProfileButton.addClickListener(e -&gt;</b>
+&nbsp;            {
+<b class="nc">&nbsp;                Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;                dialog.setHeaderTitle(&quot;Edit profile information&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                VerticalLayout layout = editProfileLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;                dialog.add(layout);</b>
+<b class="nc">&nbsp;                vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;                dialog.open();</b>
+&nbsp;            });
+&nbsp;
+<b class="nc">&nbsp;        addCarButton.addClickListener(e -&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;            dialog.setHeaderTitle(&quot;Add car to profile&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            VerticalLayout layout = addCarLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;            dialog.add(layout);</b>
+<b class="nc">&nbsp;            vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;            dialog.open();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        editCarButton.addClickListener(e -&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;            dialog.setHeaderTitle(&quot;Edit car&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            VerticalLayout layout = editCarLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;            dialog.add(layout);</b>
+<b class="nc">&nbsp;            vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;            dialog.open();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        newAdButton.addClickListener(e -&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;            dialog.setHeaderTitle(&quot;New ad&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            VerticalLayout layout = createAdLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;            dialog.add(layout);</b>
+<b class="nc">&nbsp;            vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;            dialog.open();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        editAdsButton.addClickListener(e -&gt;</b>
+&nbsp;            {
+<b class="nc">&nbsp;                Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;                dialog.setHeaderTitle(&quot;Edit ads&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                VerticalLayout layout = editAdLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;                dialog.add(layout);</b>
+<b class="nc">&nbsp;                vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;                dialog.open();</b>
+&nbsp;            });
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        deleteCarButton.addClickListener(e -&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;            dialog.setHeaderTitle(&quot;Are you sure you want to delete car?&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            VerticalLayout deleteCarLayout = deleteCarLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;            dialog.add(deleteCarLayout);</b>
+<b class="nc">&nbsp;            vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;            dialog.open();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        deleteAdButton.addClickListener(e -&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            Dialog dialog = new Dialog();</b>
+<b class="nc">&nbsp;            dialog.setHeaderTitle(&quot;Delete ads&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            VerticalLayout deleteCarLayout = deleteAdLayout(activeClient);</b>
+&nbsp;
+<b class="nc">&nbsp;            dialog.add(deleteCarLayout);</b>
+<b class="nc">&nbsp;            vaadinVerticalLayout.add(dialog);</b>
+<b class="nc">&nbsp;            dialog.open();</b>
+&nbsp;        });
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    private static VerticalLayout editProfileLayout(Client activeClient) {
+<b class="nc">&nbsp;        TextField firstName = new TextField(&quot;First name&quot;);</b>
+<b class="nc">&nbsp;        firstName.setValue(activeClient.getFirstName());</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField lastName = new TextField(&quot;Last name&quot;);</b>
+<b class="nc">&nbsp;        lastName.setValue(activeClient.getLastName());</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField password = new TextField(&quot;Password&quot;);</b>
+<b class="nc">&nbsp;        password.setValue(activeClient.getPassword());</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField phoneNumber = new TextField(&quot;Phone number&quot;);</b>
+<b class="nc">&nbsp;        phoneNumber.setValue(String.valueOf(activeClient.getPhoneNumber()));</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField address = new TextField(&quot;Address&quot;);</b>
+<b class="nc">&nbsp;        address.setValue(activeClient.getAddress());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button saveEdit = new Button(&quot;Save&quot;);</b>
+<b class="nc">&nbsp;        saveEdit.addClickListener(e -&gt;</b>
+&nbsp;                {
+<b class="nc">&nbsp;                    saveChangesOfUserDetails(activeClient, firstName, lastName, password, phoneNumber, address);</b>
+&nbsp;                });
+&nbsp;
+<b class="nc">&nbsp;        return new VerticalLayout(firstName, lastName, password, phoneNumber, address, saveEdit);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void saveChangesOfUserDetails(Client activeClient, TextField firstName, TextField lastName, TextField password, TextField phoneNumber, TextField address) {
+<b class="nc">&nbsp;        Client user = new Client(firstName.getValue(), lastName.getValue(), password.getValue(), address.getValue(), activeClient.getEmail(),</b>
+<b class="nc">&nbsp;                                Integer.parseInt(phoneNumber.getValue()), &quot;&quot;, activeClient.getPersonNumber(), false);</b>
+<b class="nc">&nbsp;        String filePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/users/&quot;;</b>
+<b class="nc">&nbsp;        user.writeToJson(filePath, user.getEmail());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static VerticalLayout addCarLayout(Client activeClient) {
+<b class="nc">&nbsp;        TextField brand = new TextField(&quot;Brand&quot;);</b>
+<b class="nc">&nbsp;        TextField model = new TextField(&quot;Model&quot;);</b>
+<b class="nc">&nbsp;        TextField year = new TextField(&quot;Year&quot;);</b>
+<b class="nc">&nbsp;        TextField color = new TextField(&quot;Color&quot;);</b>
+<b class="nc">&nbsp;        TextField seats = new TextField(&quot;Number of seats&quot;);</b>
+<b class="nc">&nbsp;        TextField regNumber = new TextField(&quot;Registration number&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        Button saveCar = new Button(&quot;Save&quot;);</b>
+<b class="nc">&nbsp;        saveCar.addClickListener(e -&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            saveCarDetails(activeClient, brand, model, year, color, seats, regNumber);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        return new VerticalLayout(brand, model, year, color, seats, regNumber, saveCar);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void saveCarDetails(Client activeClient, TextField brand, TextField model, TextField year, TextField color, TextField seats, TextField regNumber) {
+<b class="nc">&nbsp;        Car car = new Car(brand.getValue(), model.getValue(), Integer.parseInt(year.getValue()),</b>
+<b class="nc">&nbsp;                color.getValue(), Integer.parseInt(seats.getValue()), regNumber.getValue());</b>
+<b class="nc">&nbsp;        saveChangesToCarDetails(activeClient, car, car);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static VerticalLayout editCarLayout(Client activeClient) {
+<b class="nc">&nbsp;        Car car = activeClient.getCar();</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField brand = new TextField(&quot;Brand&quot;);</b>
+<b class="nc">&nbsp;        brand.setValue(car.getBrand());</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField model = new TextField(&quot;Model&quot;);</b>
+<b class="nc">&nbsp;        model.setValue(car.getModel());</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField year = new TextField(&quot;Year&quot;);</b>
+<b class="nc">&nbsp;        year.setValue(String.valueOf(car.getYear()));</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField color = new TextField(&quot;Color&quot;);</b>
+<b class="nc">&nbsp;        color.setValue(car.getColor());</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField seats = new TextField(&quot;Number of seats&quot;);</b>
+<b class="nc">&nbsp;        seats.setValue(String.valueOf(car.getNrOfSeats()));</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField regNumber = new TextField(&quot;Registration number&quot;);</b>
+<b class="nc">&nbsp;        regNumber.setValue(car.getRegNumber());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button saveEdit = new Button(&quot;Save&quot;);</b>
+<b class="nc">&nbsp;        saveEdit.addClickListener(e -&gt;</b>
+&nbsp;            {
+<b class="nc">&nbsp;                saveChangesToCarDetails(activeClient, new Car(brand.getValue(), model.getValue(), Integer.parseInt(year.getValue()), color.getValue(), Integer.parseInt(seats.getValue()), regNumber.getValue()), car);</b>
+&nbsp;            }
+&nbsp;        );
+<b class="nc">&nbsp;        return new VerticalLayout(brand, model, year, color, seats, regNumber, saveEdit);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void saveChangesToCarDetails(Client activeClient, Car brand, Car car) {
+<b class="nc">&nbsp;        activeClient.setCar(brand);</b>
+<b class="nc">&nbsp;        String filePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/cars/&quot;;</b>
+<b class="nc">&nbsp;        car.writeToJson(filePath, car.getRegNumber());</b>
+<b class="nc">&nbsp;        filePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/users/&quot;;</b>
+<b class="nc">&nbsp;        activeClient.writeToJson(filePath, activeClient.getEmail());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static VerticalLayout editAdLayout(Client activeClient) {
+<b class="nc">&nbsp;        Car car = activeClient.getCar();</b>
+<b class="nc">&nbsp;        VerticalLayout editAdLayout = new VerticalLayout();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Ad ad : car.getAds()) {</b>
+<b class="nc">&nbsp;            TextArea carDescription = new TextArea(&quot;Car&quot;);</b>
+<b class="nc">&nbsp;            carDescription.setValue(car.toString());</b>
+<b class="nc">&nbsp;            carDescription.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;            LocalDateTime fromDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(ad.getStartTime().getTime()), ZoneId.systemDefault());</b>
+<b class="nc">&nbsp;            LocalDateTime toDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(ad.getEndTime().getTime()), ZoneId.systemDefault());</b>
+&nbsp;
+<b class="nc">&nbsp;            DateTimePicker fromDateTimePicker = new DateTimePicker(fromDateTime);</b>
+<b class="nc">&nbsp;            fromDateTimePicker.setLabel(&quot;From date&quot;);</b>
+<b class="nc">&nbsp;            DateTimePicker toDateTimePicker = new DateTimePicker(toDateTime);</b>
+<b class="nc">&nbsp;            toDateTimePicker.setLabel(&quot;To date&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            TextField address = new TextField(&quot;Address&quot;);</b>
+<b class="nc">&nbsp;            address.setValue(ad.getAddress());</b>
+<b class="nc">&nbsp;            TextField hourlyPrice = new TextField(&quot;Hourly price&quot;);</b>
+<b class="nc">&nbsp;            hourlyPrice.setValue(String.valueOf(ad.getHourlyPrice()));</b>
+<b class="nc">&nbsp;            TextField dailyPrice = new TextField(&quot;Daily price&quot;);</b>
+<b class="nc">&nbsp;            dailyPrice.setValue(String.valueOf(ad.getDailyPrice()));</b>
+&nbsp;
+<b class="nc">&nbsp;            Button saveAdButton = new Button(&quot;Save ad&quot;);</b>
+<b class="nc">&nbsp;            saveAdButton.addClickListener(e -&gt;</b>
+&nbsp;                    {
+<b class="nc">&nbsp;                        Date fromDate = Date.from(fromDateTimePicker.getValue().toInstant(ZoneId.of(&quot;+01:00&quot;).getRules().getOffset(LocalDateTime.now())));</b>
+<b class="nc">&nbsp;                        Date toDate = Date.from(toDateTimePicker.getValue().toInstant(ZoneId.of(&quot;+01:00&quot;).getRules().getOffset(LocalDateTime.now())));</b>
+&nbsp;
+<b class="nc">&nbsp;                        ad.setStartTime(fromDate);</b>
+<b class="nc">&nbsp;                        ad.setEndTime(toDate);</b>
+<b class="nc">&nbsp;                        ad.setAddress(address.getValue());</b>
+<b class="nc">&nbsp;                        ad.setHourlyPrice(Integer.parseInt(hourlyPrice.getValue()));</b>
+<b class="nc">&nbsp;                        ad.setHourlyPrice(Integer.parseInt(dailyPrice.getValue()));</b>
+&nbsp;
+<b class="nc">&nbsp;                        activeClient.saveAllToJson();</b>
+&nbsp;                    }
+&nbsp;                    );
+&nbsp;
+<b class="nc">&nbsp;            HorizontalLayout row = new HorizontalLayout(carDescription, fromDateTimePicker, toDateTimePicker, address, hourlyPrice, dailyPrice, saveAdButton);</b>
+<b class="nc">&nbsp;            editAdLayout.add(row);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return editAdLayout;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static VerticalLayout deleteAdLayout(Client activeClient) {
+<b class="nc">&nbsp;        Car car = activeClient.getCar();</b>
+<b class="nc">&nbsp;        VerticalLayout deleteAdLayout = new VerticalLayout();</b>
+&nbsp;
+<b class="nc">&nbsp;        String adFolder = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/ads/&quot;;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Ad ad : car.getAds()) {</b>
+<b class="nc">&nbsp;            TextArea carDescription = new TextArea(&quot;Car&quot;);</b>
+<b class="nc">&nbsp;            carDescription.setValue(car.toString());</b>
+<b class="nc">&nbsp;            carDescription.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;            LocalDateTime fromDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(ad.getStartTime().getTime()), ZoneId.systemDefault());</b>
+<b class="nc">&nbsp;            LocalDateTime toDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(ad.getEndTime().getTime()), ZoneId.systemDefault());</b>
+&nbsp;
+<b class="nc">&nbsp;            DateTimePicker fromDateTimePicker = new DateTimePicker(fromDateTime);</b>
+<b class="nc">&nbsp;            fromDateTimePicker.setLabel(&quot;From date&quot;);</b>
+<b class="nc">&nbsp;            DateTimePicker toDateTimePicker = new DateTimePicker(toDateTime);</b>
+<b class="nc">&nbsp;            toDateTimePicker.setLabel(&quot;To date&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            fromDateTimePicker.setReadOnly(true);</b>
+<b class="nc">&nbsp;            toDateTimePicker.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;            TextField address = new TextField(&quot;Address&quot;);</b>
+<b class="nc">&nbsp;            address.setValue(ad.getAddress());</b>
+<b class="nc">&nbsp;            address.setReadOnly(true);</b>
+<b class="nc">&nbsp;            TextField hourlyPrice = new TextField(&quot;Hourly price&quot;);</b>
+<b class="nc">&nbsp;            hourlyPrice.setValue(String.valueOf(ad.getHourlyPrice()));</b>
+<b class="nc">&nbsp;            hourlyPrice.setReadOnly(true);</b>
+<b class="nc">&nbsp;            TextField dailyPrice = new TextField(&quot;Daily price&quot;);</b>
+<b class="nc">&nbsp;            dailyPrice.setValue(String.valueOf(ad.getDailyPrice()));</b>
+<b class="nc">&nbsp;            dailyPrice.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;            Button deleteAdButton = new Button(&quot;Delete ad&quot;);</b>
+<b class="nc">&nbsp;            deleteAdButton.addClickListener(e -&gt;</b>
+&nbsp;                    {
+<b class="nc">&nbsp;                        String filename = ad.getRegNr() + ad.getStartTime().getTime() + &quot;.json&quot;;</b>
+<b class="nc">&nbsp;                        ad.deleteJsonFile(adFolder + filename);</b>
+<b class="nc">&nbsp;                        activeClient.getCar().deleteAd(ad);</b>
+<b class="nc">&nbsp;                        activeClient.saveAllToJson();</b>
+&nbsp;                    }
+&nbsp;            );
+&nbsp;
+<b class="nc">&nbsp;            HorizontalLayout row = new HorizontalLayout(carDescription, fromDateTimePicker, toDateTimePicker, address, hourlyPrice, dailyPrice, deleteAdButton);</b>
+<b class="nc">&nbsp;            deleteAdLayout.add(row);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return new VerticalLayout(deleteAdLayout);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private static VerticalLayout createAdLayout (Client activeClient) {
+&nbsp;
+<b class="nc">&nbsp;        DateTimePicker fromDateTimePicker = new DateTimePicker();</b>
+<b class="nc">&nbsp;        DateTimePicker toDateTimePicker = new DateTimePicker();</b>
+&nbsp;
+<b class="nc">&nbsp;        TextField hourlyPrice = new TextField(&quot;Hourly price&quot;);</b>
+<b class="nc">&nbsp;        TextField dailyPrice = new TextField(&quot;Daily price&quot;);</b>
+<b class="nc">&nbsp;        TextField address = new TextField(&quot;address&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        Button saveAd = new Button(&quot;Save&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        saveAd.addClickListener(e -&gt;</b>
+&nbsp;                {
+<b class="nc">&nbsp;                    saveAd(activeClient, fromDateTimePicker, toDateTimePicker, hourlyPrice, dailyPrice, address);</b>
+&nbsp;                }
+&nbsp;                );
+&nbsp;
+<b class="nc">&nbsp;        return new VerticalLayout(fromDateTimePicker, toDateTimePicker, address, hourlyPrice, dailyPrice, saveAd);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void saveAd(Client activeClient, DateTimePicker fromDateTimePicker, DateTimePicker toDateTimePicker, TextField hourlyPrice, TextField dailyPrice, TextField address) {
+<b class="nc">&nbsp;        Date fromDate = Date.from(fromDateTimePicker.getValue().toInstant(ZoneId.of(&quot;+01:00&quot;).getRules().getOffset(LocalDateTime.now())));</b>
+<b class="nc">&nbsp;        Date toDate = Date.from(toDateTimePicker.getValue().toInstant(ZoneId.of(&quot;+01:00&quot;).getRules().getOffset(LocalDateTime.now())));</b>
+&nbsp;
+<b class="nc">&nbsp;        Ad ad = new Ad(activeClient, activeClient.getCar(), fromDate, toDate, address.getValue(),</b>
+<b class="nc">&nbsp;                Integer.parseInt(hourlyPrice.getValue()), Integer.parseInt(dailyPrice.getValue()));</b>
+&nbsp;
+<b class="nc">&nbsp;        activeClient.getCar().addAd(ad);</b>
+<b class="nc">&nbsp;        activeClient.saveAllToJson();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    VerticalLayout deleteCarLayout (Client activeClient) {
+<b class="nc">&nbsp;        TextArea warning = new TextArea(&quot;Warning&quot;);</b>
+<b class="nc">&nbsp;        warning.setValue(&quot;Deleting car will also delete all ads created with this car&quot;);</b>
+<b class="nc">&nbsp;        warning.setReadOnly(true);</b>
+&nbsp;
+<b class="nc">&nbsp;        Button yesButton = new Button(&quot;Yes&quot;);</b>
+<b class="nc">&nbsp;        Button noButton = new Button(&quot;No&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        yesButton.addClickListener(y-&gt;</b>
+&nbsp;        {
+<b class="nc">&nbsp;            deletaAllAdsForCar(activeClient);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        HorizontalLayout buttonLayout = new HorizontalLayout(noButton, yesButton);</b>
+<b class="nc">&nbsp;        return new VerticalLayout(warning, buttonLayout);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void deletaAllAdsForCar(Client activeClient) {
+&nbsp;        // Delete all ads
+<b class="nc">&nbsp;        String adFilePath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/ads/&quot;;</b>
+<b class="nc">&nbsp;        for (Ad ad : activeClient.getCar().getAds()) {</b>
+<b class="nc">&nbsp;            String adFile = ad.getRegNr()+ad.getStartTime()+&quot;.json&quot;;</b>
+<b class="nc">&nbsp;            ad.deleteJsonFile(adFilePath + adFile);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        deleteCar(activeClient);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void deleteCar(Client activeClient) {
+&nbsp;        // Delete car file and save client to json without car
+<b class="nc">&nbsp;        File carFile = new File(&quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/cars/&quot;+ activeClient.getCar().getRegNumber()+&quot;.json&quot;);</b>
+<b class="nc">&nbsp;        activeClient.setCar(null);</b>
+<b class="nc">&nbsp;        String filepath = &quot;src/main/java/no/hiof/softeng2022gruppe23/tjenestedk/db/users/&quot;;</b>
+<b class="nc">&nbsp;        activeClient.writeToJson(filepath, activeClient.getEmail());</b>
+<b class="nc">&nbsp;        if (carFile.delete()) {</b>
+<b class="nc">&nbsp;            Notification n = Notification</b>
+<b class="nc">&nbsp;                    .show(&quot;Car deleted successfully&quot;);</b>
+<b class="nc">&nbsp;            n.setPosition(Notification.Position.MIDDLE);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public Client getActiveClient() {
+<b class="nc">&nbsp;        return activeClient;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setActiveClient(Client activeClient) {
+<b class="nc">&nbsp;        this.activeClient = activeClient;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:09</div>
+</div>
+</body>
+</html>

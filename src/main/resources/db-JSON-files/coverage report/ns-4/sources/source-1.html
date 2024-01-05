@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Payment</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">no.hiof.softeng2022gruppe23.tjenestedk.classes.payment</a>
+</div>
+
+<h1>Coverage Summary for Class: Payment (no.hiof.softeng2022gruppe23.tjenestedk.classes.payment)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Payment</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package no.hiof.softeng2022gruppe23.tjenestedk.classes.payment;
+&nbsp;
+&nbsp;// Simple class to represent a payment solution for our service, only for demonstration purposes
+<b class="fc">&nbsp;public class Payment {</b>
+&nbsp;    public static boolean makePayment(String paymentMethod, int amount, boolean enoughMoneyInBankAccount) {
+<b class="fc">&nbsp;        if (paymentMethod ==  &quot;paypal&quot;) {</b>
+<b class="fc">&nbsp;            return paymentMethodsAPI(amount, enoughMoneyInBankAccount);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        else if (paymentMethod == &quot;stripe&quot;) {</b>
+<b class="fc">&nbsp;            return paymentMethodsAPI(amount, enoughMoneyInBankAccount);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        else if (paymentMethod == &quot;vipps&quot;) {</b>
+<b class="fc">&nbsp;            return paymentMethodsAPI(amount, enoughMoneyInBankAccount);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    // In reality all the payment methods would have it own API, but for the sake of this example we will use one.
+&nbsp;    public static boolean paymentMethodsAPI(int amount, boolean enoughMoneyInBankAccount) {
+<b class="fc">&nbsp;        return bankTransactionAPI(amount, enoughMoneyInBankAccount);</b>
+&nbsp;    }
+&nbsp;    // This whould not be handeled by us, but for the sake of this example we will use it.
+&nbsp;    public static boolean bankTransactionAPI(int amount, boolean enoughMoneyInBankAccount) {
+&nbsp;        int amountOfMoneyInBankAccount;
+<b class="fc">&nbsp;        if (enoughMoneyInBankAccount) {</b>
+<b class="fc">&nbsp;            amountOfMoneyInBankAccount = amount;</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            amountOfMoneyInBankAccount = 0;</b>
+<b class="fc">&nbsp;        } return amountOfMoneyInBankAccount &gt;= amount;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-11-25 12:41</div>
+</div>
+</body>
+</html>

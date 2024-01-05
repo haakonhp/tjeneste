@@ -1,0 +1,20 @@
+{
+  "brand": "Toyota",
+  "model": "Land cruiser",
+  "year": 1998,
+  "color": "Red",
+  "nrOfSeats": 5,
+  "regNumber": "BR20394",
+  "ads": [
+    {
+      "clientNr": 12345678901,
+      "regNr": "BR20394",
+      "startTime": "Oct 23, 2022, 2:00:00 AM",
+      "endTime": "Jan 20, 2023, 12:00:00 AM",
+      "address": "Veien 2",
+      "reservations": [],
+      "hourlyPrice": 999999,
+      "dailyPrice": 500
+    }
+  ]
+}

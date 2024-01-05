@@ -1,0 +1,7 @@
+feature: ['feat']
+dependencies: ['dep']
+documentation: ['doc']
+refactor og rettelser: ['refactor']
+style&design: ['style']
+test&workflows: ['test']
+bug: ['bug']
